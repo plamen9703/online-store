@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/css/profile-edit.css">
+</head>
+<body>
+
+<header class="navbar" th:fragment="navbar">
+    <div class="logo">MyStore</div>
+
+    <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+        <a href="/orders">Orders</a>
+        <a th:href="@{/users/profile/{id}(id=${userUpdateRequest.getId()})}">Profile</a>
+        <a href="/logout" class="logout">Logout</a>
+    </nav>
+</header>
+
+<section class="container">
+
+    <div class="form-card">
+
+        <h2>Edit Profile</h2>
+
+        <form th:action="@{/users/profile/{id}/edit(id=${userUpdateRequest.getId()})}"
+              th:object="${userUpdateRequest}"
+              th:method="put">
+
+            <!-- First Name -->
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" th:field="*{firstName}" >
+                <p class="error" th:errors="*{firstName}"></p>
+            </div>
+
+
+            <!-- Last Name -->
+            <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" th:field="*{lastName}" >
+                <p class="error" th:errors="*{lastName}"></p>
+            </div>
+
+            <!-- Image URL -->
+            <div class="input-group">
+                <label>Profile Image URL</label>
+                <input type="text" th:field="*{imageUrl}">
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-save">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+</body>
+</html>

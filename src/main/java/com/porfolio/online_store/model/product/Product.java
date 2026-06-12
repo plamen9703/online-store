@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -28,7 +27,7 @@ public class Product {
     private double price;
     private String imageUrl;
     @Enumerated(EnumType.STRING)
-    private StoreCategory category;
+    private ProductCategory category;
     @Positive
     private int stockQuantity;
     @ManyToOne(fetch = FetchType.LAZY)

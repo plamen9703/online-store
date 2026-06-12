@@ -4,14 +4,19 @@ import com.porfolio.online_store.model.cart.Cart;
 import com.porfolio.online_store.model.order.Order;
 import com.porfolio.online_store.model.product.Product;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
 @Entity

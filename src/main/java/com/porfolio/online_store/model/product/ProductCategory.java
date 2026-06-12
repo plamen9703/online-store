@@ -1,6 +1,6 @@
 package com.porfolio.online_store.model.product;
 
-public enum StoreCategory {
+public enum ProductCategory {
     ELECTRONICS,
     FASHION,
     HOME,

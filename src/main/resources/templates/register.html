@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo"><a href="/">MyStore</a></div>
+    </nav>
+</header>
+<div class="form-container">
+
+    <h2>Create Account</h2>
+
+    <form class="form" th:action="@{/users/register}" th:object="${registerRequestData}" method="post">
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" placeholder="Username" th:field="*{username}" required>
+            <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" placeholder="Email" th:field="*{email}" required>
+            <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="Password" th:field="*{password}" required>
+            <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+
+        <div class="input-group">
+            <label>First Name</label>
+            <input type="text" placeholder="First Name" th:field="*{firstName}" >
+        </div>
+
+        <div class="input-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Last Name" th:field="*{lastName}" >
+        </div>
+
+        <div class="input-group">
+            <label>Image URL</label>
+            <input type="text" placeholder="Image URL" th:field="*{imageUrl}">
+        </div>
+
+        <button class="submit-btn">
+            Register
+        </button>
+
+    </form>
+
+    <div class="link-text">
+        Already have an account?
+        <a href="/login">Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>

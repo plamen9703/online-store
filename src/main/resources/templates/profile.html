@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">MyStore</div>
+
+    <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+        <a href="/orders">Orders</a>
+        <a href="/logout" class="logout">Logout</a>
+    </nav>
+</header>
+
+<!-- PROFILE SECTION -->
+<section class="container">
+
+    <!-- LEFT: USER INFO -->
+    <div class="profile-card">
+        <img th:src="${user.getImageUrl()}" alt="Profile Image" class="profile-avatar"/>
+        <h2 th:text="${user.getUsername()}"></h2>
+
+        <div class="info-row">
+            <span class="label">User ID:</span>
+            <span class="value" th:text="${user.getId()}"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value" th:text="${user.getEmail()}"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">First Name:</span>
+            <span class="value" th:text="${user.getFirstName()}"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Last Name:</span>
+            <span class="value" th:text="${user.getLastName()}"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Joined:</span>
+            <span class="value" th:text="${user.getCreatedAt()}"></span>
+        </div>
+
+        <div class="info-row">
+            <span class="label">Active:</span>
+            <span class="value active" th:text="${user.isActive() ? 'YES' : 'NO'}"></span>
+        </div>
+
+        <a th:href="@{/users/profile/{id}/edit(id=${user.getId()})}"><button class="btn-edit">Edit Profile</button></a>
+    </div>
+
+    <!-- RIGHT: QUICK ACTIONS -->
+    <div class="actions-card">
+
+        <h2>Quick Actions</h2>
+
+        <a href="/products" class="action-btn">
+            🛒 Browse Products
+        </a>
+
+        <a href="/cart" class="action-btn">
+            🧺 View Cart
+        </a>
+
+        <a href="/orders" class="action-btn">
+            📦 My Orders
+        </a>
+
+        <a th:href="@{/users/profile/{id}/edit(id=${user.getId()})}" class="action-btn secondary">
+            ✏️ Edit Account Info
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+</html>

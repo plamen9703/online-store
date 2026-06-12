@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+
+<header>
+    <nav>
+        <div class="logo"><a href="/">MyStore</a></div>
+    </nav>
+</header>
+<div class="form-container">
+
+    <h2>Login</h2>
+
+    <form th:action="@{/users/login}" th:object="${loginRequestData}" method="post">
+
+        <div class="error-container">
+            <p th:if="${#fields.hasGlobalErrors()}"
+               th:each="err : ${#fields.globalErrors()}"
+               th:text="${err}"
+               class="alert-warning">
+            </p>
+        </div>
+
+        <div class="input-group">
+            <label>Email or Username</label>
+            <input type="text" placeholder="Enter your email or username" th:field="*{login}">
+            <p th:if="${#fields.hasErrors('login')}" th:errors="*{login}" class="alert-warning"></p>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password" th:field="*{password}">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert-warning"></p>
+        </div>
+
+        <button class="submit-btn">
+            Login
+        </button>
+
+    </form>
+
+    <div class="link-text">
+        Don't have an account?
+        <a href="/register">Register</a>
+    </div>
+
+</div>
+
+</body>
+</html>
