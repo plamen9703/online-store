@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/dropdown.js"></script>
 </head>
 <body>
 
 
-<header>
-    <nav>
-        <div class="logo"><a href="/">MyStore</a></div>
-    </nav>
-</header>
+<header th:replace="~{fragments/header :: header}"></header>
 <div class="form-container">
 
     <h2>Login</h2>

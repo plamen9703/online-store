@@ -1,0 +1,68 @@
+<header th:fragment="header" class="navbar" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <div class="logo">
+        <a th:href="@{/}">MyStore</a>
+    </div>
+
+    <nav class="nav-links">
+
+        <div th:if="${user != null}" class="dropdown">
+
+            <button id="userMenuButton"
+                    class="dropdown-button"
+                    type="button">
+
+                <img th:if="${user.imageUrl != null}"
+                     th:src="${user.imageUrl}"
+                     class="avatar">
+
+                <img th:unless="${user.imageUrl != null}"
+                     src="/images/default-user.png"
+                     class="avatar">
+
+                <span th:text="${user.username}"></span>
+
+                ▼
+            </button>
+
+            <div id="userDropdown" class="dropdown-content">
+
+                <a th:href="@{/users/profile}">
+                    Profile
+                </a>
+
+                <a th:href="@{/products/own}">
+                    My Products
+                </a>
+
+                <a th:href="@{/products/browse}">
+                    Browse Products
+                </a>
+
+                <a th:href="@{/cart}">
+                    Cart
+                </a>
+
+                <a th:href="@{/orders}">
+                    Orders
+                </a>
+
+                <a th:href="@{/users/logout}" class="logout">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+        <div th:if="${user == null}" class="anonimous content">
+
+            <a href="/login" >Login</a>
+            <a href="/register" >Register</a>
+            <a href="/producs/browse">Browse Products</a>
+
+        </div>
+
+    </nav>
+
+</header>

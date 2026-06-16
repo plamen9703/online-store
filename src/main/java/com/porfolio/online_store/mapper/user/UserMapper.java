@@ -44,4 +44,22 @@ public class UserMapper {
                 .isActive(true)
                 .build();
     }
+
+    public static User toUserEntity(UserDto userDto) {
+        if (userDto == null) {
+            return null;
+        }
+        return User.builder()
+                .id(userDto.getId())
+                .username(userDto.getUsername())
+                .email(userDto.getEmail())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .imageUrl(userDto.getImageUrl())
+                .role(userDto.getRole())
+                .createdAt(userDto.getCreatedAt())
+                .updatedAt(userDto.getUpdatedAt())
+                .isActive(userDto.isActive())
+                .build();
+    }
 }

@@ -4,21 +4,12 @@
     <meta charset="UTF-8">
     <title>User Profile</title>
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/dropdown.js"></script>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-    <div class="logo">MyStore</div>
-
-    <nav class="nav-links">
-        <a href="/">Home</a>
-        <a href="/products">Products</a>
-        <a href="/cart">Cart</a>
-        <a href="/orders">Orders</a>
-        <a href="/logout" class="logout">Logout</a>
-    </nav>
-</header>
+<header th:replace="~{fragments/header :: header}"></header>
 
 <!-- PROFILE SECTION -->
 <section class="container">
@@ -58,7 +49,7 @@
             <span class="value active" th:text="${user.isActive() ? 'YES' : 'NO'}"></span>
         </div>
 
-        <a th:href="@{/users/profile/{id}/edit(id=${user.getId()})}"><button class="btn-edit">Edit Profile</button></a>
+        <a th:href="@{/users/profile/edit}"><button class="btn-edit">Edit Profile</button></a>
     </div>
 
     <!-- RIGHT: QUICK ACTIONS -->
@@ -66,8 +57,12 @@
 
         <h2>Quick Actions</h2>
 
-        <a href="/products" class="action-btn">
+        <a href="/products/browse" class="action-btn">
             🛒 Browse Products
+        </a>
+
+        <a href="/products/own" class="action-btn">
+            🍎 My Products
         </a>
 
         <a href="/cart" class="action-btn">
@@ -78,7 +73,7 @@
             📦 My Orders
         </a>
 
-        <a th:href="@{/users/profile/{id}/edit(id=${user.getId()})}" class="action-btn secondary">
+        <a th:href="@{/users/profile/edit}" class="action-btn secondary">
             ✏️ Edit Account Info
         </a>
 

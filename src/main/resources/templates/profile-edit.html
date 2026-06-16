@@ -15,8 +15,8 @@
         <a href="/products">Products</a>
         <a href="/cart">Cart</a>
         <a href="/orders">Orders</a>
-        <a th:href="@{/users/profile/{id}(id=${userUpdateRequest.getId()})}">Profile</a>
-        <a href="/logout" class="logout">Logout</a>
+        <a th:href="@{/users/profile}">Profile</a>
+        <a href="/users/logout" class="logout">Logout</a>
     </nav>
 </header>
 
@@ -26,7 +26,7 @@
 
         <h2>Edit Profile</h2>
 
-        <form th:action="@{/users/profile/{id}/edit(id=${userUpdateRequest.getId()})}"
+        <form th:action="@{/users/profile/edit}"
               th:object="${userUpdateRequest}"
               th:method="put">
 

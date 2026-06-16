@@ -8,10 +8,8 @@ import com.porfolio.online_store.mapper.user.UserMapper;
 import com.porfolio.online_store.model.user.User;
 import com.porfolio.online_store.model.user.UserRole;
 import com.porfolio.online_store.repositories.user.UserRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +32,7 @@ public class UserService {
         return userRepository.findAll().stream().map(UserMapper::toUserDto).toList();
     }
 
-    public UserDto findById(String id) {
+    public UserDto getById(String id) {
         log.info("Fetching user with id: {}", id);
         User user = userRepository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new RuntimeException("User with this id does not exist!"));

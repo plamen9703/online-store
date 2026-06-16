@@ -21,4 +21,7 @@ public class ApplicationConstants {
     public static final String PRODUCT_DESCRIPTION_ERROR_MESSAGE = "Product description must be at most 1000 characters!";
     public static final String PRODUCT_PRICE_ERROR_MESSAGE = "Product price must be a positive number!";
     public static final String PRODUCT_STOCK_QUANTITY_ERROR_MESSAGE = "Product stock quantity must be a positive number!";
+
+    //application constants
+    public static final String SESSION_USER_ID="user_id";
 }
