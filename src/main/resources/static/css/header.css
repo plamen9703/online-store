@@ -1,3 +1,5 @@
+/* ===== NAVBAR ===== */
+
 .navbar {
     background: #111827;
     padding: 18px 8%;
@@ -6,12 +8,21 @@
     align-items: center;
 }
 
-.logo a {
+.logo a,
+.logo a:link,
+.logo a:visited {
     color: white;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
 }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+/* ===== USER DROPDOWN ===== */
 
 .dropdown {
     position: relative;
@@ -50,7 +61,13 @@
     box-shadow: 0 5px 15px rgba(0,0,0,.2);
 }
 
-.dropdown-content a {
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a,
+.dropdown-content a:link,
+.dropdown-content a:visited {
     display: block;
     padding: 12px 16px;
     text-decoration: none;
@@ -61,28 +78,44 @@
     background: #f3f4f6;
 }
 
-.dropdown-content {
-    display: none;
-
-    position: absolute;
-    right: 0;
-    top: 55px;
-
-    background: white;
-    min-width: 220px;
-
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+.logout,
+.logout:visited {
+    color: red !important;
 }
 
-.dropdown-content {
-    display: none;
+/* ===== ANONYMOUS LINKS ===== */
+
+.anonimous-content {
+    display: flex;
+    gap: 20px;
 }
 
-.dropdown-content.show {
-    display: block;
+.anonimous-content a,
+.anonimous-content a:link,
+.anonimous-content a:visited,
+.anonimous-content a:active {
+    color: white !important;
+    text-decoration: none;
 }
 
-.logout {
-    color: red;
+.anonimous-content a:hover {
+    color: #60a5fa !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+header {
+    background: #1f2937;
+    color: white;
+    padding: 20px 10%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

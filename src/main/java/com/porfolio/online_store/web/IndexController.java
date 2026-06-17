@@ -4,7 +4,7 @@ import com.porfolio.online_store.constants.ApplicationConstants;
 import com.porfolio.online_store.dto.user.UserDto;
 import com.porfolio.online_store.dto.user.UserLoginRequest;
 import com.porfolio.online_store.dto.user.UserRegisterRequest;
-import com.porfolio.online_store.service.user.UserService;
+import com.porfolio.online_store.service.user.UserSessionLoaderService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,15 +19,12 @@ import java.util.UUID;
 @RequestMapping("/")
 public class IndexController {
 
-    private final UserService userService;
+    private final UserSessionLoaderService sessionLoaderService;
 
     @GetMapping
     public ModelAndView getIndex(HttpSession session){
-        UUID userId = (UUID) session.getAttribute(ApplicationConstants.SESSION_USER_ID);
-        UserDto user = null;
-        if(userId !=null ){
-            user = userService.getById(userId.toString());
-        }
+        UserDto user = sessionLoaderService.loadUserFromSession(session);
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         modelAndView.addObject("user", user);
@@ -36,30 +33,30 @@ public class IndexController {
 
     @GetMapping("login")
     public ModelAndView getLogin(HttpSession session) {
-        UUID userId = (UUID) session.getAttribute(ApplicationConstants.SESSION_USER_ID);
+        UserDto user = sessionLoaderService.loadUserFromSession(session);
         ModelAndView modelAndView = new ModelAndView();
-        if(userId !=null ){
+        if(user !=null ){
             modelAndView.setViewName("redirect:/users/profile");
             return modelAndView;
         }
 
         modelAndView.setViewName("login");
         modelAndView.addObject("loginRequestData", new UserLoginRequest());
-        modelAndView.addObject("user", null);
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 
     @GetMapping("register")
     public ModelAndView getRegister(HttpSession session) {
-        UUID userId = (UUID) session.getAttribute(ApplicationConstants.SESSION_USER_ID);
+        UserDto user = sessionLoaderService.loadUserFromSession(session);
         ModelAndView modelAndView = new ModelAndView();
-        if(userId !=null ){
+        if(user !=null ){
             modelAndView.setViewName("redirect:/users/profile");
             return modelAndView;
         }
         modelAndView.setViewName("register");
         modelAndView.addObject("registerRequestData", new UserRegisterRequest());
-        modelAndView.addObject("user", null);
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 

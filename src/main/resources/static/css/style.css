@@ -1,40 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-    color: #333;
-}
-
-header {
-    background: #1f2937;
-    color: white;
-    padding: 20px 10%;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .logo {
     font-size: 28px;
     font-weight: bold;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-.nav-links a:hover {
-    color: #60a5fa;
 }
 
 .hero {
@@ -114,28 +80,4 @@ nav {
 .link-text {
     text-align: center;
     margin-top: 20px;
-}
-.alert-warning {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  background: linear-gradient(to left, #f88e8e, #f56767, #f53b3b);
-  background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-p.alert-warning {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  background: linear-gradient(to left, #f88e8e, #f56767, #f53b3b);
-  background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 5px 0 0;
 }

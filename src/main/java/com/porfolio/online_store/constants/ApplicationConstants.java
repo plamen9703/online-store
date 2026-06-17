@@ -19,9 +19,14 @@ public class ApplicationConstants {
     //product validation messages
     public static final String PRODUCT_NAME_SIZE_ERROR_MESSAGE = "Product name must be between 3 and 50 characters!";
     public static final String PRODUCT_DESCRIPTION_ERROR_MESSAGE = "Product description must be at most 1000 characters!";
-    public static final String PRODUCT_PRICE_ERROR_MESSAGE = "Product price must be a positive number!";
-    public static final String PRODUCT_STOCK_QUANTITY_ERROR_MESSAGE = "Product stock quantity must be a positive number!";
+    public static final String PRODUCT_PRICE_ERROR_MESSAGE = "Product price must be a non negative number!";
+    public static final String PRODUCT_STOCK_QUANTITY_ERROR_MESSAGE = "Product stock quantity must be a non negative number!";
+    public static final String PRODUCT_NAME_ERROR_MESSAGE = "Product name must not be empty!";
 
     //application constants
     public static final String SESSION_USER_ID="user_id";
+
+    //product constants
+    public static final int PRODUCT_PAGE_SIZE = 9;
+    public static final String PRODUCT_PAGE_DEFAULT_SIZE = "0";
 }

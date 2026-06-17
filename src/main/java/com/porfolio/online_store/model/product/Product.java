@@ -3,14 +3,18 @@ package com.porfolio.online_store.model.product;
 import com.porfolio.online_store.model.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
 @Entity

@@ -70,6 +70,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profile-edit");
         modelAndView.addObject("userUpdateRequest", userDto);
+        modelAndView.addObject("user", userDto);
         return modelAndView;
     }
 

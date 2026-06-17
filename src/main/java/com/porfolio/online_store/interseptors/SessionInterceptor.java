@@ -21,7 +21,13 @@ import static com.porfolio.online_store.constants.ApplicationConstants.*;
 @Component
 public class SessionInterceptor implements HandlerInterceptor {
 
-    private static final Set<String> UNAUTHENTICATED_ENDPOINTS = Set.of("/","/login","/users/login","/register","/error");
+    private static final Set<String> UNAUTHENTICATED_ENDPOINTS = Set.of(
+            "/",
+            "/login",
+            "/users/login",
+            "/register",
+            "/users/register",
+            "/error");
     private static final Set<String> ADMIN_ENDPOINTS = Set.of("");
     private final UserService userService;
 

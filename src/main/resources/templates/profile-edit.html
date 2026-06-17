@@ -4,21 +4,13 @@
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="/css/profile-edit.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/alert-warnings.css">
+    <script src="/js/dropdown.js"></script>
 </head>
 <body>
 
-<header class="navbar" th:fragment="navbar">
-    <div class="logo">MyStore</div>
-
-    <nav class="nav-links">
-        <a href="/">Home</a>
-        <a href="/products">Products</a>
-        <a href="/cart">Cart</a>
-        <a href="/orders">Orders</a>
-        <a th:href="@{/users/profile}">Profile</a>
-        <a href="/users/logout" class="logout">Logout</a>
-    </nav>
-</header>
+<header th:replace="~{fragments/header :: header}"></header>
 
 <section class="container">
 

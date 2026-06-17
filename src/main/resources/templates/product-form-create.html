@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<header>
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/product-form.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/alert-warnings.css">
+    <script src="/js/dropdown.js"></script>
+</header>
+
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+
+<section class="form-container">
+
+    <form th:action="@{/products/create}" th:object="${productData}" th:method="post" class="form">
+
+        <h1>Create</h1>
+
+        <div class="input-group">
+            <label>Name</label>
+            <input type="text" placeholder="Name of the product" th:field="*{name}" required>
+            <p class="alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+
+
+        <div class="input-group">
+            <label>Description</label>
+            <textarea placeholder="Product description" th:field="*{description}" required></textarea>
+            <p class="alert-warning" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+        </div>
+
+        <select class="input-group" th:field="*{category}">
+            <optgroup label="Select product category" disabled></optgroup>
+            <option th:each="category: ${T(com.porfolio.online_store.model.product.ProductCategory).values()}"
+                    th:value="${category}"
+                    th:text="${category}"></option>
+        </select>
+
+        <div class="input-group">
+            <label>Price</label>
+            <input type="number" step="0.01" min="0" th:field="*{price}" required>
+            <p class="alert-warning" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+        </div>
+
+        <div class="input-group">
+            <label>Image URL</label>
+            <input type="text" placeholder="Image url." th:field="*{imageUrl}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></p>
+        </div>
+
+        <div class="input-group">
+            <label>Stock Quantity</label>
+            <input type="number" th:field="*{stockQuantity}" required>
+            <p class="alert-warning" th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}"></p>
+        </div>
+
+        <button class="btn">Save Product</button>
+
+    </form>
+
+</section>
+
+</body>
+</html>

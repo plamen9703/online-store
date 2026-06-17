@@ -31,6 +31,10 @@
                     Profile
                 </a>
 
+                <a th:href="@{/products/create}">
+                    Create Product
+                </a>
+
                 <a th:href="@{/products/own}">
                     My Products
                 </a>
@@ -55,11 +59,11 @@
 
         </div>
 
-        <div th:if="${user == null}" class="anonimous content">
+        <div th:if="${user == null}" class="anonimous-content">
 
             <a href="/login" >Login</a>
             <a href="/register" >Register</a>
-            <a href="/producs/browse">Browse Products</a>
+            <a href="/products/browse">Browse Products</a>
 
         </div>
 

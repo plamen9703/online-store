@@ -35,7 +35,7 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column
+    @Column(columnDefinition = "text")
     private String imageUrl;
     @Enumerated(EnumType.STRING)
     private UserRole role;

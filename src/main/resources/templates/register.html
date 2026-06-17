@@ -4,6 +4,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/alert-warnings.css">
     <script src="/js/dropdown.js"></script>
 </head>
 <body>
@@ -13,7 +14,7 @@
 
     <h2>Create Account</h2>
 
-    <form class="form" th:action="@{/users/register}" th:object="${registerRequestData}" method="post">
+    <form class="form" th:action="@{/users/register}" th:object="${registerRequestData}" th:method="post">
 
         <div class="input-group">
             <label>Username</label>

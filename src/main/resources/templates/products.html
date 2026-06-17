@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Prodcuts</title>
+<link rel="stylesheet" href="/css/products.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/product-actions.css">
+<script src="/js/dropdown.js"></script>
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<section class="container">
+
+    <h1>Products</h1>
+
+    <div class="grid">
+
+        <!-- Product 1 -->
+        <div th:each="product : ${products.getContent()}" class="card">
+            <img th:src="${product.getImageUrl()}" class="product-img">
+
+            <h3 th:text="${product.getName()}"></h3>
+
+            <p th:text="${product.getPrice()}+' EUR'" class="price"></p>
+
+            <p th:if="${product.getStockQuantity() >= 10}" th:text="${product.getStockQuantity()}" class="stock in"></p>
+            <p th:if="${product.getStockQuantity() > 0 and product.getStockQuantity() < 10}"
+               th:text="'In Stock: ' + ${product.getStockQuantity()}" class="stock low"></p>
+            <p th:if="${product.getStockQuantity() == 0}" class="stock out">Out of Stock</p>
+
+            <a th:href="@{/products/{id}(id=${product.getId()})}" class="btn">View Details</a>
+            <div th:if="${user !=null and product.getOwner().getId() == user.getId()}" class="actions">
+                <form th:action="@{/products/{id}/edit(id=${product.id})}" method="get">
+                    <button type="submit" class="edit">Edit</button>
+                </form>
+
+                <form th:action="@{/products/{id}(id=${product.id})}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="delete" type="submit">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
