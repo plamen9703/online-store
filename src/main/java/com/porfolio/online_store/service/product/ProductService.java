@@ -17,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 import static com.porfolio.online_store.constants.ApplicationConstants.PRODUCT_PAGE_SIZE;
@@ -27,7 +26,6 @@ import static com.porfolio.online_store.constants.ApplicationConstants.PRODUCT_P
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final UserService userRepository;
 
     public ProductDto createProduct(UserDto user, ProductCreationRequest request) {
         Product product = ProductMapper.toEntity(request);
@@ -56,8 +54,8 @@ public class ProductService {
     }
 
 
-    public ProductDto getProductById(String productId) {
-        Product product = productRepository.findById(UUID.fromString(productId))
+    public ProductDto getProductById(UUID productId) {
+        Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product with this id does not exist!"));
         return ProductMapper.toDto(product);
     }
@@ -95,5 +93,9 @@ public class ProductService {
 
 
         return productRepository.findAll(pageRequest).map(ProductMapper::toDto);
+    }
+
+    public boolean exists(UUID productId){
+        return productRepository.existsById(productId);
     }
 }

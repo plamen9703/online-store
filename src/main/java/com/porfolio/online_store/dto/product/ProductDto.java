@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public class ProductDto {
     private UUID id;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     private String imageUrl;
     private ProductCategory category;
     private int stockQuantity;

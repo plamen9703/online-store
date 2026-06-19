@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Cart</title>
+
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <script src="/js/dropdown.js"></script>
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="cart-container">
+
+    <h1>My Cart</h1>
+
+    <div th:if="${#lists.isEmpty(cart.items)}" class="empty-cart">
+        Your cart is empty.
+    </div>
+
+    <div th:id="totalPrice" th:text="${totalPrice}"></div>
+
+    <div class="cart-list">
+
+        <div class="cart-item"
+             th:each="item : ${cart.items}"
+             th:id="'item-' + ${item.product.id}">
+
+            <img class="product-image"
+                 th:src="${item.product.imageUrl != null ? item.product.imageUrl : '/images/default-product.jpg'}">
+
+            <div class="product-info">
+
+                <h3 th:text="${item.product.name}"></h3>
+
+                <p class="price">
+                    <span th:text="${item.product.price}"></span> EURO
+                </p>
+
+                <div class="quantity-controls">
+
+                    <button class="quantity-btn"
+                            th:data-product-id="${item.product.id}"
+                            onclick="decreaseQuantity(this)">
+                        -
+                    </button>
+
+                    <span class="quantity"
+                          th:id="'quantity-' + ${item.product.id}"
+                          th:text="${item.quantity}">
+                    </span>
+
+                    <button class="quantity-btn"
+                            th:data-product-id="${item.product.id}"
+                            onclick="increaseQuantity(this)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button class="remove-btn"
+                    th:data-product-id="${item.product.id}"
+                    onclick="removeProduct(this)">
+                Remove
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/cart.js"></script>
+
+</body>
+</html>

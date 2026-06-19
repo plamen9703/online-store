@@ -5,9 +5,11 @@ import com.porfolio.online_store.dto.user.UserLoginRequest;
 import com.porfolio.online_store.dto.user.UserRegisterRequest;
 import com.porfolio.online_store.dto.user.UserUpdateRequest;
 import com.porfolio.online_store.mapper.user.UserMapper;
+import com.porfolio.online_store.model.cart.Cart;
 import com.porfolio.online_store.model.user.User;
 import com.porfolio.online_store.model.user.UserRole;
 import com.porfolio.online_store.repositories.user.UserRepository;
+import com.porfolio.online_store.service.cart.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,16 +27,16 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final CartService cartService;
 
     public List<UserDto> findAll() {
         log.info("Fetching all users from the database.");
         return userRepository.findAll().stream().map(UserMapper::toUserDto).toList();
     }
 
-    public UserDto getById(String id) {
+    public UserDto getById(UUID id) {
         log.info("Fetching user with id: {}", id);
-        User user = userRepository.findById(UUID.fromString(id))
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User with this id does not exist!"));
         log.info("User found with id: {}", id);
         return UserMapper.toUserDto(user);
@@ -54,6 +56,10 @@ public class UserService {
         User user = UserMapper.toUserEntity(userRegisterRequest);
         String encodedPassword = passwordEncoder.encode(userRegisterRequest.getPassword());
         user.setPassword(encodedPassword);
+
+        Cart cart = cartService.createNewCart(user);
+
+        user.setCart(cart);
 
         User savedUser = userRepository.save(user);
 
@@ -106,6 +112,10 @@ public class UserService {
         user.setRole(role);
         User updatedUser = userRepository.save(user);
         return UserMapper.toUserDto(updatedUser);
+    }
+
+    public boolean exists(UUID userId){
+        return userRepository.existsById(userId);
     }
 
 }

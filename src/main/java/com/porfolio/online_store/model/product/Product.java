@@ -3,20 +3,19 @@ package com.porfolio.online_store.model.product;
 import com.porfolio.online_store.model.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "product")
 public class Product {
@@ -28,7 +27,7 @@ public class Product {
     @Column(length = 1000)
     private String description;
     @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
     private String imageUrl;
     @Enumerated(EnumType.STRING)
     private ProductCategory category;

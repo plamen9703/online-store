@@ -1,11 +1,11 @@
 package com.porfolio.online_store.web.user;
 
-import com.porfolio.online_store.constants.ApplicationConstants;
 import com.porfolio.online_store.dto.user.UserDto;
 import com.porfolio.online_store.dto.user.UserLoginRequest;
 import com.porfolio.online_store.dto.user.UserRegisterRequest;
 import com.porfolio.online_store.dto.user.UserUpdateRequest;
 import com.porfolio.online_store.service.user.UserService;
+import com.porfolio.online_store.service.user.UserSessionLoaderService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
 
-import static com.porfolio.online_store.constants.ApplicationConstants.*;
+import static com.porfolio.online_store.constants.ApplicationConstants.SESSION_USER_ID;
 
 @RequiredArgsConstructor
 @Controller
@@ -25,6 +25,7 @@ import static com.porfolio.online_store.constants.ApplicationConstants.*;
 public class UserController {
 
     private final UserService userService;
+    private final UserSessionLoaderService userSessionLoaderService;
 
     @PostMapping("/register")
     public String register(@ModelAttribute("registerRequestData") @Valid UserRegisterRequest registerRequest, BindingResult bindingResult) {
@@ -55,8 +56,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public ModelAndView getProfile(HttpSession session) {
-        UUID userId = (UUID)session.getAttribute(SESSION_USER_ID);
-        UserDto userDto = userService.getById(userId.toString());
+        UserDto userDto = userSessionLoaderService.loadUserFromSession(session);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profile");
         modelAndView.addObject("user", userDto);
@@ -65,8 +65,7 @@ public class UserController {
 
     @GetMapping("/profile/edit")
     public ModelAndView getEditProfile(HttpSession session) {
-        UUID userId = (UUID) session.getAttribute(SESSION_USER_ID);
-        UserDto userDto = userService.getById(userId.toString());
+        UserDto userDto = userSessionLoaderService.loadUserFromSession(session);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profile-edit");
         modelAndView.addObject("userUpdateRequest", userDto);

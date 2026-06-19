@@ -52,7 +52,7 @@ public class SessionInterceptor implements HandlerInterceptor {
             response.sendRedirect("/login");
             return false;
         }
-        UserDto user = userService.getById(userId.toString());
+        UserDto user = userService.getById(userId);
         if(!user.isActive()){
             session.invalidate();
             response.sendRedirect("/login");

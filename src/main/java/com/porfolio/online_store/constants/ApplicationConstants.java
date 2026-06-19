@@ -29,4 +29,11 @@ public class ApplicationConstants {
     //product constants
     public static final int PRODUCT_PAGE_SIZE = 9;
     public static final String PRODUCT_PAGE_DEFAULT_SIZE = "0";
+
+    //cart error messages
+    public static final String CART_ORDER_QUANTITY_ERROR_MESSAGE = "Cart item quantity must be a non negative number.";
+
+    //orederItem error messages
+    public static final String ORDER_ITEM_QUANTITY_ERROR_MESSAGE = "Order item quantity must be a non negative number.";
+    public static final String ORDER_ITEM_PRICE_AT_PURCHASE_ERROR_MESSAGE = "Price at purchase must be a non negative number.";
 }

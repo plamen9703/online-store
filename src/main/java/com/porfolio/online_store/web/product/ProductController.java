@@ -9,14 +9,15 @@ import com.porfolio.online_store.service.user.UserSessionLoaderService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import static com.porfolio.online_store.constants.ApplicationConstants.*;
+import java.util.UUID;
+
+import static com.porfolio.online_store.constants.ApplicationConstants.PRODUCT_PAGE_DEFAULT_SIZE;
 
 @RequiredArgsConstructor
 @Controller
@@ -80,7 +81,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ModelAndView getProductDetailsPage(@PathVariable("id") String id, HttpSession session){
         UserDto user = userSessionLoaderService.loadUserFromSession(session);
-        ProductDto product = productService.getProductById(id);
+        ProductDto product = productService.getProductById(UUID.fromString(id));
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("product-details");
         modelAndView.addObject("user", user);
@@ -112,7 +113,7 @@ public class ProductController {
             modelAndView.setViewName("redirect:/login");
             return modelAndView;
         }
-        ProductDto product = productService.getProductById(productid);
+        ProductDto product = productService.getProductById(UUID.fromString(productid));
         modelAndView.setViewName("product-form-edit");
         modelAndView.addObject("user", user);
         modelAndView.addObject("productData", product);
@@ -161,7 +162,7 @@ public class ProductController {
             modelAndView.setViewName("redirect:/login");
             return modelAndView;
         }
-        ProductDto product = productService.getProductById(productId);
+        ProductDto product = productService.getProductById(UUID.fromString(productId));
         if(bindingResult.hasErrors()){
             modelAndView.setViewName("product-form-edit");
             modelAndView.addObject("user", user);

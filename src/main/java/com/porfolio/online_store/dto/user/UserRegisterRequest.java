@@ -1,8 +1,6 @@
 package com.porfolio.online_store.dto.user;
 
 
-import com.porfolio.online_store.model.user.UserRole;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

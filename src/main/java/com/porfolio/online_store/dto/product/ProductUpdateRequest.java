@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 
 
+import java.math.BigDecimal;
+
 import static com.porfolio.online_store.constants.ApplicationConstants.*;
 
 @Builder
@@ -19,7 +21,7 @@ public class ProductUpdateRequest {
     @Size(max = 1000, message = PRODUCT_DESCRIPTION_ERROR_MESSAGE)
     private String description;
     @Min(value = 0, message = PRODUCT_PRICE_ERROR_MESSAGE)
-    private double price;
+    private BigDecimal price;
     private String imageUrl;
     private ProductCategory category;
     @Min(value = 0, message = PRODUCT_STOCK_QUANTITY_ERROR_MESSAGE)

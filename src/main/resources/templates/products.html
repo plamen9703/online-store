@@ -42,10 +42,19 @@
                 </form>
 
             </div>
+
+            <div th:if="${user !=null and product.getOwner().getId() != user.getId()}" class="actions">
+                <button class="btn"
+                        th:data-product-id="${product.id}"
+                        onclick="addToCart(this)">
+                    Add to Cart
+                </button>
+
+            </div>
         </div>
 
     </div>
-
+    <script th:src="@{/js/cart.js}"></script>
 </section>
 
 </body>
