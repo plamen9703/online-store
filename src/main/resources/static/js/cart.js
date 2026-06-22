@@ -55,7 +55,7 @@ async function decreaseQuantity(button) {
 
     let quantity = parseInt(quantityElement.innerText);
 
-    if (quantity <= 1){
+    if (quantity <= 0){
         await removeProduct(button)
         return;
     }
@@ -80,7 +80,25 @@ async function removeProduct(button) {
 
     const productId = button.dataset.productId;
 
-    await updateCart(productId, 0);
+     const response = await fetch("/cart/remove", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                productId: productId,
+                quantity: -1
+            })
+        });
+
+        if (!response.ok) {
+
+            const errorMessage = await response.text();
+
+            alert(errorMessage);
+
+            return;
+        }
 
     document.getElementById("item-" + productId).remove();
 }

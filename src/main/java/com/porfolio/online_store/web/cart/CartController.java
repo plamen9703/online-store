@@ -3,6 +3,7 @@ package com.porfolio.online_store.web.cart;
 import com.porfolio.online_store.dto.cart.AddProductRequest;
 import com.porfolio.online_store.dto.cart.CartUpdateRequest;
 import com.porfolio.online_store.dto.user.UserDto;
+import com.porfolio.online_store.model.cart.CartItemRemoveRequest;
 import com.porfolio.online_store.service.cart.CartService;
 import com.porfolio.online_store.service.user.UserSessionLoaderService;
 import jakarta.servlet.http.HttpSession;
@@ -65,6 +66,38 @@ public class CartController {
                     request.getProductId(),
                     user,
                     request.getQuantity());
+
+            return ResponseEntity.ok().build();
+
+        } catch (RuntimeException e) {
+
+            return ResponseEntity.badRequest()
+                    .body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeCartItem(
+            @Valid @RequestBody CartItemRemoveRequest request,
+            BindingResult bindingResult,
+            HttpSession session) {
+
+        UserDto user = userSessionLoaderService.loadUserFromSession(session);
+
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Please login first.");
+        }
+
+        if(bindingResult.hasErrors()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(bindingResult.getModel());
+        }
+
+        try {
+            cartService.removeFromUsersCart(
+                    request.getProductId(),
+                    user);
 
             return ResponseEntity.ok().build();
 

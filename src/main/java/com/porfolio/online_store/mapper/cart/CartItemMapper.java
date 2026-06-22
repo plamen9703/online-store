@@ -20,8 +20,13 @@ public class CartItemMapper {
         }
 
         Product cartItemProduct = cartItem.getProduct();
+        User owner = cartItemProduct.getOwner();
         UserDto productOwner = UserDto.builder()
-                .id(cartItemProduct.getOwner().getId())
+                .id(owner.getId())
+                .username(owner.getUsername())
+                .firstName(owner.getFirstName())
+                .lastName(owner.getLastName())
+                .email(owner.getEmail())
                 .build();
         ProductDto product = ProductDto.builder()
                 .id(cartItemProduct.getId())

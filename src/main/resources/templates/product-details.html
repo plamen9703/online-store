@@ -17,13 +17,15 @@
 
     <div class="product-box" th:object="${product}">
 
-        <img th:src="${product.getImageUrl()}" class="img">
+        <img th:if="${product.getImageUrl() != null and !product.getImageUrl().isEmpty()}" th:src="${product.getImageUrl()}" class="img" alt="product-image">
+
+        <img th:if="${product.getImageUrl() == null or product.getImageUrl().isEmpty()}" src="/images/default-product-img.png" class="img" alt="product-image">
 
         <div class="info">
 
             <h1 th:text="${product.getName()}"></h1>
 
-            <p class="price" th:text="${product.getPrice()+' EURO'}"></p>
+            <p class="price" th:text="${product.getPrice()+' EUR'}"></p>
 
             <p class="desc" th:text="${product.getDescription()}">
             </p>

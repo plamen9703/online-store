@@ -21,5 +21,6 @@ The project uses hibernate for entity management with PostgreSQL database.
 * Update Product - only users that own the product can edit the product
 * Delete Product
 * Add Product to Users Cart
-* Edit quantity of Product in users Cart - removes the product if quantity is 0
-
+* Edit quantity of Product in users Cart - removes the product if quantity is less than 0
+* Checkout cart into orders for users
+* Edit order status - on order shipping product stock quantity is updated as well as all cart items that have that product in them

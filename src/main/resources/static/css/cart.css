@@ -104,3 +104,15 @@ body {
     font-size: 24px;
     color: gray;
 }
+
+.checkout button{
+    border: none;
+    background: blue;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    font-size: larger;
+    font-weight: bold;
+    cursor: pointer;
+}

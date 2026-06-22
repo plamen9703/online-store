@@ -15,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import static com.porfolio.online_store.constants.ApplicationConstants.PRODUCT_PAGE_DEFAULT_SIZE;
+import static com.porfolio.online_store.constants.ApplicationConstants.PRODUCT_PAGE_DEFAULT_PAGE;
 
 @RequiredArgsConstructor
 @Controller
@@ -31,7 +33,7 @@ public class ProductController {
 
     @GetMapping("/browse")
     public ModelAndView getProductsPage(
-            @RequestParam(value = "page", required = false, defaultValue = PRODUCT_PAGE_DEFAULT_SIZE) Integer requestedPage,
+            @RequestParam(value = "page", required = false, defaultValue = PRODUCT_PAGE_DEFAULT_PAGE) Integer requestedPage,
             HttpSession session){
 
         ModelAndView modelAndView = new ModelAndView();
@@ -53,13 +55,19 @@ public class ProductController {
         modelAndView.setViewName("products");
         modelAndView.addObject("user", user);
         modelAndView.addObject("products", products);
+        modelAndView.addObject("currentPage", pageIndex);
+
+        List<Integer> array = new ArrayList<>();
+        IntStream.range(1, products.getTotalPages() + 1).forEach(array::add);
+        modelAndView.addObject("pageNumbers", array);
+        modelAndView.addObject("pageType","browse");
 
         return modelAndView;
     }
 
     @GetMapping("/own")
     public ModelAndView getUserProducts(
-            @RequestParam(value = "page", required = false, defaultValue = PRODUCT_PAGE_DEFAULT_SIZE) Integer page,
+            @RequestParam(value = "page", required = false, defaultValue = PRODUCT_PAGE_DEFAULT_PAGE) Integer requestedPage,
             HttpSession session){
 
         ModelAndView modelAndView = new ModelAndView();
@@ -70,11 +78,19 @@ public class ProductController {
             return modelAndView;
         }
 
-        Page<ProductDto> products = productService.getUsersProducts(user.getId().toString(),page);
+        int pageIndex = requestedPage - 1;
+        Page<ProductDto> products = productService.getUsersProducts(user.getId().toString(),pageIndex);
 
         modelAndView.setViewName("products");
         modelAndView.addObject("user", user);
         modelAndView.addObject("products", products);
+
+        modelAndView.addObject("currentPage", pageIndex);
+
+        List<Integer> array = new ArrayList<>();
+        IntStream.range(1, products.getTotalPages() + 1).forEach(array::add);
+        modelAndView.addObject("pageNumbers", array);
+        modelAndView.addObject("pageType","own");
         return modelAndView;
     }
 

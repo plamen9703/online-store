@@ -1,0 +1,36 @@
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 45px;
+    height: 45px;
+
+    background: white;
+    color: #2563eb;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
+}
+
+.page:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}

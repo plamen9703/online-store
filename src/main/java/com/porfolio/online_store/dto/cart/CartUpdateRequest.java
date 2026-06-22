@@ -17,6 +17,6 @@ public class CartUpdateRequest {
 
     @NotNull(message = "Product id cannot be null!")
     private UUID productId;
-    @Min(value = 0, message = "Quantity of product in cart can not be less than 0.")
+//    @Min(value = 0, message = "Quantity of product in cart can not be less than 0.")
     private int quantity;
 }

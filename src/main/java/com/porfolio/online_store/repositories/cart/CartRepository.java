@@ -1,7 +1,6 @@
 package com.porfolio.online_store.repositories.cart;
 
 import com.porfolio.online_store.model.cart.Cart;
-import com.porfolio.online_store.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

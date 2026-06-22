@@ -36,7 +36,7 @@
                 <h3 th:text="${item.product.name}"></h3>
 
                 <p class="price">
-                    <span th:text="${item.product.price}"></span> EURO
+                    <span th:text="${item.product.price}"></span> EUR
                 </p>
 
                 <div class="quantity-controls">
@@ -69,7 +69,9 @@
             </button>
 
         </div>
-
+        <div class="checkout">
+            <a href="/checkout"><button>Checkout</button></a>
+        </div>
     </div>
 
 </div>

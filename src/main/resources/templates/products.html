@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/css/products.css">
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/product-actions.css">
+<link rel="stylesheet" href="/css/pages.css">
 <script src="/js/dropdown.js"></script>
 <body>
 
@@ -17,7 +18,9 @@
 
         <!-- Product 1 -->
         <div th:each="product : ${products.getContent()}" class="card">
-            <img th:src="${product.getImageUrl()}" class="product-img">
+            <img th:if="${product.getImageUrl() != null and !product.getImageUrl().isEmpty()}" th:src="${product.getImageUrl()}" class="img" alt="product-image">
+
+            <img th:if="${product.getImageUrl() == null or product.getImageUrl().isEmpty()}" src="/images/default-product-img.png" class="img" alt="product-image">
 
             <h3 th:text="${product.getName()}"></h3>
 
@@ -51,6 +54,12 @@
                 </button>
 
             </div>
+        </div>
+
+    </div>
+    <div class="pages">
+        <div th:each="pageNumber : ${ pageNumbers}">
+            <a class="page" th:href="@{/products/{type}?page=(type=${pageType})}+${pageNumber}" th:text="${pageNumber}"></a>
         </div>
 
     </div>

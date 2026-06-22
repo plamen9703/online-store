@@ -103,3 +103,8 @@
         grid-template-columns: 1fr;
     }
 }
+
+.img{
+    max-width:150px;
+    max-height:100px;
+}

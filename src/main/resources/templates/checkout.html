@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/dropdown.js"></script>
+</head>
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="container">
+
+    <h1>Checkout</h1>
+
+    <form th:action="@{/orders/create}" method="post">
+
+        <div class="address-section">
+            <h2>Shipping Address</h2>
+
+            <textarea
+                    name="shippingAddress"
+                    placeholder="Enter delivery address"
+                    required>
+            </textarea>
+        </div>
+
+        <div th:each="entry : ${ordersBySeller}" class="seller-group">
+
+            <h2>
+                Seller:
+                <span th:text="${entry.key.username}"></span>
+            </h2>
+
+            <div th:each="item : ${entry.value}" class="item-row">
+
+                <div>
+                    <strong th:text="${item.product.name}"></strong>
+                </div>
+
+                <div>
+                    Quantity:
+                    <span th:text="${item.quantity}"></span>
+                </div>
+
+                <div>
+                    Price:
+                    $<span th:text="${item.product.price}"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="checkout-btn">
+            Place Orders
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

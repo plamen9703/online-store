@@ -9,13 +9,15 @@ import com.porfolio.online_store.mapper.user.UserMapper;
 import com.porfolio.online_store.model.product.Product;
 import com.porfolio.online_store.model.user.UserRole;
 import com.porfolio.online_store.repositories.product.ProductRepository;
-import com.porfolio.online_store.service.user.UserService;
+import com.porfolio.online_store.service.cart.CartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -97,5 +99,17 @@ public class ProductService {
 
     public boolean exists(UUID productId){
         return productRepository.existsById(productId);
+    }
+
+    @Transactional
+    public void updateProductQuantity(UUID productId, int quantity){
+        if(quantity < 0){
+            throw new RuntimeException("Product quantity can not bet set to a negative number.");
+        }
+        Product product= productRepository.findById(productId).orElseThrow(()->new RuntimeException("Product not found."));
+        product.setStockQuantity(quantity);
+
+
+
     }
 }

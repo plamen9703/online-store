@@ -1,0 +1,39 @@
+body {
+    background: #f3f4f6;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 40px;
+}
+
+.seller-group {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.address-section textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.checkout-btn {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}

@@ -28,7 +28,7 @@ public class ApplicationConstants {
 
     //product constants
     public static final int PRODUCT_PAGE_SIZE = 9;
-    public static final String PRODUCT_PAGE_DEFAULT_SIZE = "0";
+    public static final String PRODUCT_PAGE_DEFAULT_PAGE = "1";
 
     //cart error messages
     public static final String CART_ORDER_QUANTITY_ERROR_MESSAGE = "Cart item quantity must be a non negative number.";

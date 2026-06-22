@@ -3,16 +3,21 @@ package com.porfolio.online_store.model.order;
 import com.porfolio.online_store.model.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -23,17 +28,32 @@ public class Order {
     private User customer;
     @ManyToOne(fetch = FetchType.LAZY)
     private User seller;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //for chatGPT orderStatus are PENDING,SHIPPED,DELIVERED,CANCELLED
     private OrderStatus status;
-    @Column(nullable = false)
-    @NotEmpty
     private String shippingAddress;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderItem> items;
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, precision = 19, scale = 2)
+    private BigDecimal totalPrice;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<OrderItem> items = new ArrayList<>();
+    @Column(updatable = false)
+    private Timestamp shippedAt;
+    @Column(updatable = false)
+    private Timestamp deliveredAt;
+    private String cancellationReason;
     @CreationTimestamp
     private Timestamp createdAt;
     @Column(nullable = false)
     @UpdateTimestamp
     private Timestamp updatedAt;
+
+    public void addItem(OrderItem item) {
+        items.add(item);
+        item.setOrder(this);
+    }
+
+    public void removeItem(OrderItem item) {
+        items.remove(item);
+        item.setOrder(null);
+    }
 }

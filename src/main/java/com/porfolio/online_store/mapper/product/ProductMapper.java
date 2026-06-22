@@ -16,8 +16,14 @@ public class ProductMapper {
             if (product == null) {
                 return null;
             }
+            User productOwner = product.getOwner();
             UserDto owner = UserDto.builder()
-                    .id(product.getOwner().getId())
+                    .id(productOwner.getId())
+                    .username(productOwner.getUsername())
+                    .email(productOwner.getEmail())
+                    .firstName(productOwner.getFirstName())
+                    .lastName(productOwner.getLastName())
+                    .email(productOwner.getEmail())
                     .build();
             return ProductDto.builder()
                     .id(product.getId())

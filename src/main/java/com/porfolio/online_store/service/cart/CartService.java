@@ -3,6 +3,7 @@ package com.porfolio.online_store.service.cart;
 import com.porfolio.online_store.dto.cart.CartDto;
 import com.porfolio.online_store.dto.product.ProductDto;
 import com.porfolio.online_store.dto.user.UserDto;
+import com.porfolio.online_store.mapper.cart.CartMapper;
 import com.porfolio.online_store.model.cart.Cart;
 import com.porfolio.online_store.model.cart.CartItem;
 import com.porfolio.online_store.model.product.Product;
@@ -42,6 +43,7 @@ public class CartService {
 
         Cart cart = cartRepository.findByUserId(user.getId())
                 .orElseThrow();
+        ProductDto product = productService.getProductById(productId);
 
         CartItem item = cart.getItems()
                 .stream()
@@ -51,11 +53,13 @@ public class CartService {
 
         if (item == null) {
 
+            int quantity = product.getStockQuantity() == 0 ? 0 : 1;
+
             cart.getItems().add(
                     CartItem.builder()
                             .cart(cart)
                             .product(Product.builder().id(productId).build())
-                            .quantity(1)
+                            .quantity(quantity)
                             .build()
             );
 
@@ -92,14 +96,36 @@ public class CartService {
             cart.getItems().add(newCartItem);
             return;
         }
-        if (quantity < 0) {
-            cart.getItems().remove(item);
-        }else {
-            item.setQuantity(quantity);
-        }
+
+        item.setQuantity(quantity);
+
     }
 
     public BigDecimal getCartTotalPrice(CartDto cart){
         return cartRepository.getCartTotalPrice(cart.getId());
+    }
+
+    public CartDto getUsersCart(UserDto userDto){
+        Cart cart = cartRepository.findByUserId(userDto.getId()).orElseThrow(() -> new RuntimeException("Users cart not found."));
+        return CartMapper.toDto(cart);
+    }
+    @Transactional
+    public void checkoutUsersCart(UUID userid){
+        Cart cart = cartRepository.findByUserId(userid).orElseThrow(()->new RuntimeException("Users cart not found."));
+
+        cart.getItems().removeIf(item -> item.getQuantity() > 0);
+
+    }
+
+    @Transactional
+    public void removeFromUsersCart(UUID productId, UserDto user) {
+        Cart cart = cartRepository.findByUserId(user.getId())
+                .orElseThrow();
+        CartItem item = cart.getItems()
+                .stream()
+                .filter(i -> i.getProduct().getId().equals(productId))
+                .findFirst()
+                .orElse(null);
+        cart.getItems().remove(item);
     }
 }

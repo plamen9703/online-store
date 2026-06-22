@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/css/order-details.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <script src="/js/dropdown.js"></script>
+</head>
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="container">
+
+    <h1>Order Details</h1>
+
+    <div class="order-info">
+
+        <p>
+            <strong>Order ID:</strong>
+            <span th:text="${order.id}"></span>
+        </p>
+
+        <p>
+            <strong>Customer:</strong>
+            <span th:text="${order.customer.username}"></span>
+        </p>
+
+        <p>
+            <strong>Seller:</strong>
+            <span th:text="${order.seller.username}"></span>
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            <span th:text="${order.status}"></span>
+        </p>
+
+        <p>
+            <strong>Shipping Address:</strong>
+            <span th:text="${order.shippingAddress}"></span>
+        </p>
+
+        <p>
+            <strong>Created At:</strong>
+            <span th:text="${order.createdAt}"></span>
+        </p>
+
+    </div>
+
+    <h2>Items</h2>
+
+    <div th:each="item : ${order.items}" class="item-card">
+
+        <p>
+            <strong>Product:</strong>
+            <span th:text="${item.productNameAtPurchase}"></span>
+        </p>
+
+        <p>
+            <strong>Quantity:</strong>
+            <span th:text="${item.quantity}"></span>
+        </p>
+
+        <p>
+            <strong>Price At Purchase:</strong>
+            $<span th:text="${item.priceAtPurchase}"></span>
+        </p>
+
+    </div>
+
+    <div class="total">
+
+        Total:
+        <span th:text="${order.totalPrice}"></span> EUR
+
+    </div>
+
+    <div class="order-controls">
+
+        <div class="complete"
+             th:if="${user.id == order.customer.id }">
+
+            <form th:action="@{/orders/updatestatus/{id}/delivered(id=${order.id})}" th:method="put">
+                <input type="submit" class="complete" value="Complete Order"/>
+            </form>
+
+        </div>
+
+        <div class="ship"
+             th:if="${user.id == order.seller.id }">
+
+            <form th:method="put" th:action="@{/orders/updatestatus/{id}/ship(id=${order.id})}">
+                <input type="submit" class="ship" value="Ship Order"/>
+            </form>
+
+        </div>
+
+        <div class="cancel"
+             th:if="${user.id == order.seller.id }">
+
+            <form th:method="put"
+                  th:action="@{/orders/updatestatus/{id}/cancel(id=${order.id})}"
+                  th:object="${cancelRequest}">
+
+                <input type="text" hidden="" th:value="${order.id}">
+
+                <textarea
+                        placeholder="Cancellation reason..."
+                        th:field="*{cancellationReason}"
+                        required>
+            </textarea>
+                <br>
+
+                <input type="submit"
+                       class="cancel-btn"
+                       value="Cancel Order">
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
