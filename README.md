@@ -1,7 +1,7 @@
 # My Store
 
 ## Project Description
-Project is made with SpringBoot for back end and uses Thymleaf and JS for front end.
+Project is made with SpringBoot for back end and uses Thymleaf and JS for front end. Use store.env file to store database connection information - file added for project setup for SoftUnit course with removed username and passwords for project setup.
 It is intended to be a simple online store project with the flowing entities
 
 * User

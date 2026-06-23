@@ -4,54 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="596232fe-dfca-4398-b8f7-a5a06cc15d3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/oder/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/cart/CartItemRemoveRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/order/OrderCancelRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/cart/CartItemService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/cart/CheckoutService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/order/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/web/cart/CheckoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/web/order/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/checkout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/order-details.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/orders.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/pages.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/default-product-img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/checkout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/order-details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/orders-made.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/orders-received.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/config/WebMvcConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/config/WebMvcConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/constants/ApplicationConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/constants/ApplicationConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/dto/cart/CartUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/dto/cart/CartUpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/dto/order/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/dto/order/OrderDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/dto/order/OrderItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/dto/order/OrderItemDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/cart/CartItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/cart/CartItemMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/oder/OrderItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/oder/OrderItemMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/product/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/mapper/product/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/order/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/order/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/model/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/repositories/cart/CartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/repositories/cart/CartItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/repositories/cart/CartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/repositories/cart/CartRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/repositories/oder/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/repositories/oder/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/cart/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/cart/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/service/product/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/web/cart/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/web/cart/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/web/product/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/porfolio/online_store/web/product/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/cart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product-form-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product-form-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/product-form-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/product-form-edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
-    </list>
+    <list default="true" id="596232fe-dfca-4398-b8f7-a5a06cc15d3b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
